@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="de">
+	<head>
+		<meta charset="utf-8">
+		<title>Calculator</title>
+		<style>
+			body {
+				font-family: sans-serif;
+				margin: 0;
+			}
+			table {
+				width: 100%;
+				height: 70vh;
+				background-color: rgb(20, 20, 20);
+				color: white;
+				background-color: rgb(30, 30, 30);
+			}
+			td {
+				width: 25%;
+				text-align: center;
+				font-size: 24px;
+				background-color: rgb(20, 20, 20);
+			}
+			td:hover {
+				background-color: rgb(30, 30, 30);
+				cursor: pointer;
+			}
+			#ergebnisfeld {
+				height: 30vh;
+				background-color: rgb(40, 40, 40);
+				color: white;
+				font-size: 64px;
+				display: flex;
+				justify-content: flex-end;
+				align-items: flex-end;
+				box-sizing: border-box;
+			}
+			#ergebnis {
+				background-color: rgb(67, 55, 236);
+			}
+			#ergebnis:hover {
+				background-color: rgb(110, 101, 235);
+			}
+			.highlight {
+				background-color: rgb(25, 25, 25);
+			}
+			
+		</style>
+		<script>
+			function appendOperation(operation){
+				document.getElementById('ergebnisfeld').innerHTML +=operation;
+			}
+			function ergebnistaste(){
+				let container = document.getElementById('ergebnisfeld');
+				let result = eval(container.innerHTML);
+				container.innerHTML = result;
+			}
+			function letzteeingabelöschen(){
+				let container = document.getElementById('ergebnisfeld');
+				if(container.innerHTML.endsWith(' ')){
+					container.innerHTML = container.innerHTML.slice(0,-3);
+				}else{
+					container.innerHTML = container.innerHTML.slice(0,-1);
+				}
+			}
+		</script>
+	</head>
+	<body>
+		<div id="ergebnisfeld">
+			
+		</div>
+		<table>
+			<tr>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td onclick="letzteeingabelöschen()">DEL</td>
+			</tr>
+			
+			<tr>
+				<td onclick="appendOperation(7)">7</td>
+				<td onclick="appendOperation(8)">8</td>
+				<td onclick="appendOperation(9)">9</td>
+				<td onclick="appendOperation(' / ')" class="rechenzeichen">/</td>
+			</tr>
+			
+			<tr>
+				<td onclick="appendOperation(4)">4</td>
+				<td onclick="appendOperation(5)">5</td>
+				<td onclick="appendOperation(6)">6</td>
+				<td onclick="appendOperation(' * ')" class="rechenzeichen">x</td>
+			</tr>
+			
+			<tr>
+				<td onclick="appendOperation(1)">1</td>
+				<td onclick="appendOperation(2)">2</td>
+				<td onclick="appendOperation(3)">3</td>
+				<td onclick="appendOperation(' + ')" class="rechenzeichen">+</td>
+			</tr>
+			
+			<tr>
+				<td onclick="appendOperation(0)">0</td>
+				<td onclick="appendOperation('.')">,</td>
+				<td onclick="ergebnistaste()" id="ergebnis">=</td>
+				<td onclick="appendOperation(' - ')" class="rechenzeichen">-</td>
+			</tr>
+		</table>
+		
+		
+	</body>
+</html>
